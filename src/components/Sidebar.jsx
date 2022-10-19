@@ -9,10 +9,13 @@ import TagIcon from '@mui/icons-material/Tag';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import { Avatar, Button, ClickAwayListener, Grow, MenuItem, MenuList, Paper, Popper } from '@mui/material';
+import { collection, onSnapshot } from 'firebase/firestore';
+import { db, logout } from '../firebase';
 
 const Sidebar = () => {
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
+    const [users, setUsers] = useState([]);
 
     const handleToggle = () => {
         setOpen((prevOpen) => !prevOpen);
@@ -43,7 +46,14 @@ const Sidebar = () => {
         }
 
         prevOpen.current = open;
+
+        onSnapshot(collection(db, 'users'), (snapshot) => {
+            setUsers(snapshot.docs.map((doc) => doc.data()));
+        });
     }, [open]);
+
+    console.log(users[0]);
+    console.log(users[1]);
 
     return (
         <div className="sidebar">
@@ -67,10 +77,10 @@ const Sidebar = () => {
                 aria-expanded={open ? 'true' : undefined}
                 className="account-box"
             >
-                <Avatar src="https://pbs.twimg.com/profile_images/1538927792804478980/6sQkMzDL_400x400.jpg" />
+                {/* <Avatar src="https://pbs.twimg.com/profile_images/1538927792804478980/6sQkMzDL_400x400.jpg" /> */}
                 <div className="account-details">
-                    <h5>magniloquent</h5>
-                    <p>@makk3nz00</p>
+                    <h5>{users.map((user) => user.name)}</h5>
+                    <p>{users.map((user) => user.email)}</p>
                 </div>
             </div>
 
@@ -101,6 +111,7 @@ const Sidebar = () => {
                                         className="logout-btn"
                                         onClick={(e) => {
                                             handleClose(e);
+                                            logout();
                                         }}
                                     >
                                         Logout

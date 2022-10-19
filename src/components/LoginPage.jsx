@@ -22,7 +22,6 @@ const LoginPage = () => {
         <div className="login">
             <div className="login-container">
                 <TextField
-                    id="outlined-basic"
                     label="E-mail"
                     variant="outlined"
                     type="text"
@@ -31,7 +30,6 @@ const LoginPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
-                    id="outlined-password-input"
                     label="Password"
                     variant="outlined"
                     type="password"

@@ -18,7 +18,6 @@ const ResetPage = () => {
         <div className="reset">
             <div className="reset-container">
                 <TextField
-                    id="outlined-basic"
                     label="E-mail"
                     variant="outlined"
                     type="text"

@@ -26,7 +26,6 @@ const RegisterPage = () => {
         <div className="register">
             <div className="register-container">
                 <TextField
-                    id="outlined-basic"
                     label="Username"
                     variant="outlined"
                     type="text"
@@ -35,7 +34,6 @@ const RegisterPage = () => {
                     onChange={(e) => setName(e.target.value)}
                 />
                 <TextField
-                    id="outlined-basic"
                     label="E-mail"
                     variant="outlined"
                     type="text"
@@ -44,7 +42,6 @@ const RegisterPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <TextField
-                    id="outlined-password-input"
                     label="Password"
                     variant="outlined"
                     type="password"
