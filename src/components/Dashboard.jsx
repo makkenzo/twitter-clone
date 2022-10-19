@@ -6,7 +6,7 @@ import Widgets from './Widgets';
 const Dashboard = () => {
     return (
         <div className="app">
-            <Sidebar logged />
+            <Sidebar />
             <Feed />
             <Widgets />
         </div>

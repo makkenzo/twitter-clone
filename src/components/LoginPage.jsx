@@ -22,12 +22,9 @@ const LoginPage = ({ title }) => {
                 <Button variant="contained" className="login-btn">
                     Login
                 </Button>
-                <Button variant="contained" color="error" className="login-btn login-google">
+                {/* <Button variant="contained" color="error" className="login-btn login-google">
                     Login with Google
-                </Button>
-                <div>
-                    <Link to="/reset">Forgot Password</Link>
-                </div>
+                </Button> */}
                 <div>
                     Don't have an account? <Link to="/register">Register</Link> now
                 </div>

@@ -7,17 +7,18 @@ const RegisterPage = ({ title }) => {
     useEffect(() => {
         document.title = title;
     });
+
     return (
         <div className="register">
             <div className="register-container">
                 <h1>{title}</h1>
-                <TextField label="Username" variant="outlined" type="text" className="register-textBox" />
-                <TextField label="E-mail" variant="outlined" type="text" className="register-textBox" />
+                <TextField id="username" label="Username" variant="outlined" type="text" className="register-textBox" />
+                <TextField id="email" label="E-mail" variant="outlined" type="text" className="register-textBox" />
                 <TextField
+                    id="password"
                     label="Password"
                     variant="outlined"
                     type="password"
-                    autoComplete="current-password"
                     className="register-textBox"
                 />
                 <Button variant="contained" className="register-btn">
