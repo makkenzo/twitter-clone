@@ -1,31 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
-import { auth, sendPasswordReset } from '../firebase';
+import React, { useEffect } from 'react';
 import './ResetPage.css';
-import { Button, Link, TextField } from '@mui/material';
+import { Button, TextField } from '@mui/material';
+import { Link } from 'react-router-dom';
 
-const ResetPage = () => {
-    const [email, setEmail] = useState('');
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
+const ResetPage = ({ title }) => {
     useEffect(() => {
-        if (loading) return;
-        if (user) navigate('/dashboard');
-    }, [user, loading]);
-
+        document.title = title;
+    });
     return (
         <div className="reset">
             <div className="reset-container">
-                <TextField
-                    label="E-mail"
-                    variant="outlined"
-                    type="text"
-                    className="reset-textBox"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-                <Button variant="contained" className="reset-btn" onClick={() => sendPasswordReset(email)}>
+                <h1>{title}</h1>
+                <TextField label="E-mail" variant="outlined" type="text" className="reset-textBox" />
+                <Button variant="contained" className="reset-btn">
                     Send password reset email
                 </Button>
                 <div>

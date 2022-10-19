@@ -1,64 +1,29 @@
 import { Button, TextField } from '@mui/material';
-import React, { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link, useNavigate } from 'react-router-dom';
-import { auth, registerWithEmailAndPassword, signInWithGoogle } from '../firebase';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './RegisterPage.css';
 
-const RegisterPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [name, setName] = useState('');
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
-
-    const register = () => {
-        if (!name) alert('Please enter name');
-        registerWithEmailAndPassword(name, email, password);
-    };
-
+const RegisterPage = ({ title }) => {
     useEffect(() => {
-        if (loading) return;
-        if (user) navigate('/dashboard');
-    }, [user, loading]);
-
+        document.title = title;
+    });
     return (
         <div className="register">
             <div className="register-container">
-                <TextField
-                    label="Username"
-                    variant="outlined"
-                    type="text"
-                    className="register-textBox"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <TextField
-                    label="E-mail"
-                    variant="outlined"
-                    type="text"
-                    className="register-textBox"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                <h1>{title}</h1>
+                <TextField label="Username" variant="outlined" type="text" className="register-textBox" />
+                <TextField label="E-mail" variant="outlined" type="text" className="register-textBox" />
                 <TextField
                     label="Password"
                     variant="outlined"
                     type="password"
                     autoComplete="current-password"
                     className="register-textBox"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button variant="contained" className="register-btn" onClick={register}>
+                <Button variant="contained" className="register-btn">
                     Register
                 </Button>
-                <Button
-                    variant="contained"
-                    color="error"
-                    className="register-btn register-google"
-                    onClick={signInWithGoogle}
-                >
+                <Button variant="contained" color="error" className="register-btn register-google">
                     Login with Google
                 </Button>
                 <div>

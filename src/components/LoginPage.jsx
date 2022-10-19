@@ -1,51 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth, logInWithEmailAndPassword, signInWithGoogle } from '../firebase';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import './LoginPage.css';
 import { Button, TextField } from '@mui/material';
 
-const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [user, loading, error] = useAuthState(auth);
-    const navigate = useNavigate();
-
+const LoginPage = ({ title }) => {
     useEffect(() => {
-        if (loading) {
-            return;
-        }
-        if (user) navigate('/dashboard');
-    }, [user, loading]);
-
+        document.title = title;
+    });
     return (
         <div className="login">
             <div className="login-container">
-                <TextField
-                    label="E-mail"
-                    variant="outlined"
-                    type="text"
-                    className="login-textBox"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
+                <h1>{title}</h1>
+                <TextField label="E-mail" variant="outlined" type="text" className="login-textBox" />
                 <TextField
                     label="Password"
                     variant="outlined"
                     type="password"
                     autoComplete="current-password"
                     className="login-textBox"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
                 />
-                <Button
-                    variant="contained"
-                    className="login-btn"
-                    onClick={() => logInWithEmailAndPassword(email, password)}
-                >
+                <Button variant="contained" className="login-btn">
                     Login
                 </Button>
-                <Button variant="contained" color="error" className="login-btn login-google" onClick={signInWithGoogle}>
+                <Button variant="contained" color="error" className="login-btn login-google">
                     Login with Google
                 </Button>
                 <div>
